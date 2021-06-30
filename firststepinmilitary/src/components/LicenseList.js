@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useLicenseState } from './LicenseContext';
 import LicenseItem from './LicenseItem';
+import major_to_position from "../datasrc/major_to_position.json";
 
 const LicenseListBlock = styled.div`
   flex: 1;
@@ -10,8 +11,12 @@ const LicenseListBlock = styled.div`
   overflow-y: auto;
 `;
 
-function LicenseList() {
+
+
+
+function LicenseList(props) {
   const licenses = useLicenseState();
+ 
   return (
   
   <LicenseListBlock>
@@ -19,7 +24,7 @@ function LicenseList() {
         <LicenseItem
           key={license.id}
           id={license.id}
-          text={license.text}
+          text={props.findDataFrom(license.text)}
         />
       ))}
   </LicenseListBlock>
